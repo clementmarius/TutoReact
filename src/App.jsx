@@ -1,18 +1,20 @@
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(new FormData(e.target));
+    
+  }
 
   return (
-    <>
-      <p>Compteur : {count}</p>
-      <button onClick={increment}>Incrementer</button>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="firstname"
+      />
+      <button>Envoyer</button>
+    </form>
   );
 }
 
