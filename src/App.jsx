@@ -10,7 +10,9 @@ function App() {
 
   return (
     <>
-      <Title color="blue">Mon Composant</Title>
+      <Title color="blue" id="monid" className="demo" data-demo="demo">
+        Mon Composant
+      </Title>
       <input type="text" />
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae
@@ -27,11 +29,20 @@ function App() {
   );
 }
 
-function Title({ color, children, hidden }) {
+function Title({ color, children, hidden, ...props }) {
   if (hidden) {
     return null;
   }
-  return <h1 style={{ color: color }}>{children}</h1>;
+
+  const props = {
+    id: "monid",
+    className: "maclass",
+  };
+  return (
+    <h1 style={{ color: color }} {...props}>
+      {children}
+    </h1>
+  );
 }
 
 export default App;
