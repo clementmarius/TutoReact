@@ -1,12 +1,19 @@
 import { useState } from "react";
 
 function App() {
-
-  const [firstName, setFirstName] = useState('John doe')
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(new FormData(e.target));
+    
+  }
 
   return (
-    <form>
-      <input type="text" name="firstname" value={firstName} />
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="firstname"
+      />
+      <button>Envoyer</button>
     </form>
   );
 }
