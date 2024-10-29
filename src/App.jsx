@@ -29,7 +29,7 @@ function App() {
   );
 }
 
-function Title({ color, children, hidden, ...props }) {
+function Title({ color, children, hidden }) {
   if (hidden) {
     return null;
   }
