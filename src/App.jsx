@@ -1,11 +1,7 @@
 const title = "Bonjour les gens";
 const style = { color: "red", background: "yellow" };
 const showTitle = true;
-const todos = [
-  'Acheter de la farine',
-  'Preparer la pate',
-  'Faire les crepes'
-]
+const todos = ["Acheter de la farine", "Preparer la pate", "Faire les crepes"];
 
 function App() {
   const handleClick = () => {
@@ -14,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Title /> 
+      <Title color="blue">Mon Composant</Title>
       <input type="text" />
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae
@@ -23,14 +19,19 @@ function App() {
         consequatur rerum recusandae sit labore?
       </p>
       <ul>
-        {todos.map(todo => (<li key={todo}>{todo}</li>))}
+        {todos.map((todo) => (
+          <li key={todo}>{todo}</li>
+        ))}
       </ul>
     </>
   );
 }
 
-function Title () {
-  return <h1>Bonjour les gens</h1>
+function Title({ color, children, hidden }) {
+  if (hidden) {
+    return null;
+  }
+  return <h1 style={{ color: color }}>{children}</h1>;
 }
 
 export default App;
