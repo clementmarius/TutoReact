@@ -1,18 +1,13 @@
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const increment = () => {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-  };
+
+  const [firstName, setFirstName] = useState('John doe')
 
   return (
-    <>
-      <p>Compteur : {count}</p>
-      <button onClick={increment}>Incrementer</button>
-    </>
+    <form>
+      <input type="text" name="firstname" value={firstName} />
+    </form>
   );
 }
 
