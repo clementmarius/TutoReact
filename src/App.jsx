@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox } from "./components/forms/Checkbox";
-import { Input } from "./components/forms/Input"; 
+import { Input } from "./components/forms/Input";
 
 const PRODUCTS = [
   { category: "Fruits", price: "1$", stocked: true, name: "Apple" },
@@ -26,6 +26,7 @@ function SearchBar() {
       <div className="mb-3">
         <Input value="" onChange={() => null} placeholder="Search items..." />
         <Checkbox
+          id="stocked"
           checked={false}
           onChange={() => null}
           label="Show available products"
