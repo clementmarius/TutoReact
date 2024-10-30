@@ -24,7 +24,7 @@ function SearchBar() {
   return (
     <div>
       <div className="mb-3">
-        <Input value="" onChange={() => null} placeholder="Search..." />
+        <Input value="" onChange={() => null} placeholder="Search items..." />
         <Checkbox
           checked={false}
           onChange={() => null}
