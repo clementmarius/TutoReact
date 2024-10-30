@@ -1,5 +1,5 @@
 
-export function ProductRow({ products }) {
+export function ProductRow({ product }) {
   const style = product.stocked ? undefined : { color: "red" };
 
   return (
