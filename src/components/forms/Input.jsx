@@ -1,4 +1,4 @@
-export function Input(placeholder, value, onChange) {
+export function Input({placeholder, value, onChange}) {
   return (
     <div>
       <input
