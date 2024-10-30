@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "./components/forms/Checkbox";
 import { Input } from "./components/forms/Input";
 import { ProductCategoryRow } from "./components/products/ProductCategoryRow";
@@ -15,23 +15,52 @@ const PRODUCTS = [
 ];
 
 function App() {
+  const [showStockedOnly, setShowStockedOnly] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const visibleProducts = PRODUCTS.filter((product) => {
+    if (showStockedOnly && !product.stocked) {
+      return false;
+    }
+
+    if (search && !product.name.includes(search)) {
+      return false
+    }
+
+    return true;
+  });
+
   return (
     <div className="container my-3">
-      <SearchBar />
-      <ProductTable products={PRODUCTS} />
+      <SearchBar
+        search={search}
+        onSearchChange={setSearch}
+        showStockedOnly={showStockedOnly}
+        onStockedOnlyChange={setShowStockedOnly}
+      />
+      <ProductTable products={visibleProducts} />
     </div>
   );
 }
 
-function SearchBar() {
+function SearchBar({
+  showStockedOnly,
+  onStockedOnlyChange,
+  search,
+  onSearchChange,
+}) {
   return (
     <div>
       <div className="mb-3">
-        <Input value="" onChange={() => null} placeholder="Search items..." />
+        <Input
+          value={search}
+          onChange={onSearchChange}
+          placeholder="Search items..."
+        />
         <Checkbox
           id="stocked"
-          checked={false}
-          onChange={() => null}
+          checked={showStockedOnly}
+          onChange={onStockedOnlyChange}
           label="Show available products"
         />
       </div>
@@ -46,10 +75,12 @@ function ProductTable({ products }) {
 
   for (let product of products) {
     if (product.category !== lastCategory) {
-      rows.push(<ProductCategoryRow key={product.category} name={product.category} />);
+      rows.push(
+        <ProductCategoryRow key={product.category} name={product.category} />
+      );
     }
-    lastCategory = product.category
-    rows.push(<ProductRow product={product} key={product.name} />)
+    lastCategory = product.category;
+    rows.push(<ProductRow product={product} key={product.name} />);
   }
 
   return (
@@ -60,9 +91,7 @@ function ProductTable({ products }) {
           <th>Price</th>
         </tr>
       </thead>
-      <tbody>
-        {rows}
-      </tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 }
